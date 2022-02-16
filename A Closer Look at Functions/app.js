@@ -53,7 +53,7 @@ const newPassport = function(person){
 newPassport(hridoy);
 checkIn(flight, hridoy); */
 
-
+/* 
 const oneWord = function(str){
     return str.replace(/ /g, '').toLowerCase();
 
@@ -82,4 +82,74 @@ const high5 = function(){
     console.log('✋');
 };
 
-document.body.addEventListener('click', high5);
+document.body.addEventListener('click', high5); */
+/* 
+
+const greet = function(greeting){
+    return function(name){
+        console.log(`${greeting}, ${name}`);
+    };
+};
+
+const greeterHey = greet('Hey');
+
+greeterHey("Hridoy");
+
+greet('Hi')('Riyad');
+
+const greetArr = greeting => name => {
+    console.log(`${greeting}, ${name}`);
+};
+
+greetArr('Hi')('Riyad'); */
+
+const lufthansa = {
+    airline: 'Lufthansa',
+    iataCode: 'LH',
+    booking: [],
+    //book:funtion(){}
+
+    book(flightNum, name){
+        console.log(`${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+        );
+        this.booking.push({flight: `${this.iataCode}${flightNum}`,name})
+    },
+};
+
+lufthansa.book(239,'Rakibul Hasan');
+lufthansa.book(786,'Riayd Hasan');
+
+console.log(lufthansa.booking);
+
+const eurowings = {
+    airline: 'Eurowings',
+    iataCode:'EW',
+    booking:[],
+};
+
+const book = lufthansa.book;
+
+//not work
+//book(eurowings, 23,'Rakibul Hasan');
+
+
+//Call Method
+book.call(eurowings, 23,'Maria Hasan');
+console.log(eurowings);
+
+const bdAir = {
+    airline: 'Bangladesh Airlines',
+    iataCode:'BDAir',
+    booking:[],
+};
+
+book.call(bdAir,78,'Rakibul Hasan');
+console.log(bdAir);
+//Apply method
+const flightData = [655, 'Ainin'];
+
+book.apply(bdAir,flightData);
+console.log(bdAir);
+
+book.call(bdAir,...flightData)
+
