@@ -103,6 +103,8 @@ const greetArr = greeting => name => {
 
 greetArr('Hi')('Riyad'); */
 
+
+/* 
 const lufthansa = {
     airline: 'Lufthansa',
     iataCode: 'LH',
@@ -151,5 +153,40 @@ const flightData = [655, 'Ainin'];
 book.apply(bdAir,flightData);
 console.log(bdAir);
 
-book.call(bdAir,...flightData)
+book.call(bdAir,...flightData);
+
+
+const bookEW = book.bind(eurowings);
+bookEW(23,'Steven Williams');
+
+const bookLH = book.bind(lufthansa);
+const bookBD = book.bind(bdAir);
+
+bookBD(58,'Mehedi Hasan');
+
+const bookBD58 = book.bind(bdAir, 58);
+
+bookBD58('Nafess Hasan');
+bookBD58('Rocky Hasan');
+
+// With Event Listeners
+
+lufthansa.planes = 300;
+lufthansa.buyPlane = function(){
+    console.log(this);
+  
+    this.planes++;
+    console.log(this.planes);
+};
+
+lufthansa.buyPlane();
+
+document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+
+//Partial application
+const addTax = (rate, value) => value - value * rate;
+console.log(addTax(0.2,525)); 
+
+*/
 
