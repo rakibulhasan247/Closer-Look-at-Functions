@@ -190,3 +190,69 @@ console.log(addTax(0.2,525));
 
 */
 
+const bdfly = {
+    airline: 'Fly BD',
+    iataCode:'BDFLY',
+    bookings:[],
+    book(flightNum, fullName){
+        console.log(
+            `${fullName} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+        );
+        this.bookings.push({Flight: `${this.iataCode}${flightNum}`, fullName});
+    },
+};
+
+bdfly.book(258, 'Rakibul Hasan Redoy');
+bdfly.book(228, 'Sabiha Islam Himi');
+
+console.log(bdfly);
+
+
+const airIndia = {
+    airline: 'Air India',
+    iataCode:'AI',
+    bookings:[],
+};
+
+const book = bdfly.book;
+
+book.call(airIndia, 253,'Riyad Hasan');
+console.log(airIndia);
+
+const flightData = [678,'Mehedi Hasan'];
+
+book.call(airIndia, ...flightData);
+console.log(airIndia);
+
+const bookAI = book.bind(airIndia);
+bookAI(23, 'Steven Williams');
+console.log(airIndia);
+
+const bookAI58 = book.bind(airIndia, 58);
+
+bookAI58('Hridoy Hasan');
+console.log(airIndia);
+
+airIndia.planes = 200;
+airIndia.buyPlane = function(){
+    console.log(this);
+
+    this.planes++;
+    console.log(this.planes);
+};
+
+airIndia.buyPlane();
+
+document.querySelector('.buy').addEventListener('click', airIndia.buyPlane.bind(airIndia));
+
+
+const runOnce = function () {
+    console.log('This will never run again');
+};
+
+runOnce();
+(function () {
+    console.log('This will never run again');
+}());
+
+(() => console.log('This will also never run again'))();
